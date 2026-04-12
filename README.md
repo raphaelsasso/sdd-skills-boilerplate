@@ -132,4 +132,4 @@ Opções disponíveis:
 
 ## Licença
 
-Projeto privado.
+Use como quiser :)
