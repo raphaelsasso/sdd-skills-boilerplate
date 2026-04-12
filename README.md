@@ -124,4 +124,4 @@ Available options:
 
 ## License
 
-Private project.
+Free to use :)
