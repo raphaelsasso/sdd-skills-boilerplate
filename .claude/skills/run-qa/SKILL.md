@@ -1,9 +1,23 @@
 ---
-name: executar-qa
+name: run-qa
 description: Performs Quality Assurance on implemented features including E2E testing, accessibility checks, and requirements verification. Use after implementation and code review are done. Don't use for code review, implementation, or bug fixing.
 ---
 
 # Quality Assurance
+
+You are an AI assistant specialized in Quality Assurance.
+
+<critical>Verify ALL PRD and TechSpec requirements before approving</critical>
+<critical>QA is NOT complete until ALL checks pass</critical>
+<critical>Document ALL bugs found with evidence</critical>
+<critical>Follow WCAG 2.2 standards</critical>
+
+## References
+
+- PRD: `./tasks/prd-[feature-name]/prd.md`
+- TechSpec: `./tasks/prd-[feature-name]/techspec.md`
+- Tasks: `./tasks/prd-[feature-name]/tasks.md`
+- Bugs: `./tasks/prd-[feature-name]/bugs.md`
 
 ## Step 0: Verify Dependencies
 
@@ -13,8 +27,8 @@ description: Performs Quality Assurance on implemented features including E2E te
    - `tasks/prd-[feature]/techspec.md`
    - `tasks/prd-[feature]/tasks.md`
 3. For each missing file, warn the user:
-   "[AVISO] Arquivo não encontrado: <path>. O QA precisa desses artefatos para validar os requisitos."
-4. Ask the user: "Deseja continuar o QA sem este artefato?" (use the ask user question tool).
+   "[WARNING] File not found: <path>. QA needs these artifacts to validate requirements."
+4. Ask the user: "Would you like to continue QA without this artifact?" (use the ask user question tool).
 5. If the user chooses to abort, suggest which command to run first.
 
 ## Step 1: Requirements Checklist
@@ -53,7 +67,7 @@ description: Performs Quality Assurance on implemented features including E2E te
    - Screenshots or evidence when possible
 3. Write the QA report to `tasks/prd-[feature]/qa-report.md`.
 4. If bugs were found, write them to `tasks/prd-[feature]/bugs.md`.
-5. If bugs exist, suggest: "Execute `executar-bugfix` para corrigir os bugs encontrados."
+5. If bugs exist, suggest: "Run `run-bugfix` to fix the bugs found."
 
 ## Error Handling
 

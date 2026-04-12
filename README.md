@@ -1,113 +1,105 @@
 # SDD Boilerplate
 
-Boilerplate para desenvolvimento orientado por especificação (**Spec-Driven Development**). Agnóstico de stack -- funciona com qualquer framework, linguagem ou runtime.
+Boilerplate for **Spec-Driven Development**. Stack-agnostic -- works with any framework, language, or runtime.
 
-## O que é SDD?
+## What is SDD?
 
-SDD é um fluxo de trabalho onde toda feature passa por etapas estruturadas antes da implementação:
+SDD is a workflow where every feature goes through structured stages before implementation:
 
 ```
-Prompt -> PRD -> Tech Spec -> Tasks -> Implementação -> Review -> QA
+Prompt -> PRD -> Tech Spec -> Tasks -> Implementation -> Review -> QA
 ```
 
-Cada etapa produz um artefato documentado na pasta `tasks/`, garantindo rastreabilidade e qualidade.
+Each stage produces a documented artifact in the `tasks/` folder, ensuring traceability and quality.
 
-Cada etapa possui **safeguards**: se os artefatos anteriores não existirem, o agente avisa e pergunta se deseja continuar.
+Each stage includes **safeguards**: if prior artifacts don't exist, the agent warns you and asks whether to continue.
 
-## Como usar
+## How to use
 
-### 1. Clone o boilerplate
+### 1. Clone the boilerplate
 
 ```bash
-git clone <repo-url> meu-projeto
-cd meu-projeto
+git clone <repo-url> my-project
+cd my-project
 ```
 
-### 2. Escolha sua stack
+### 2. Choose your stack
 
-Abra `CLAUDE.md` (e `AGENTS.md`) e preencha a tabela **Stack e skills recomendadas** com as tecnologias do seu projeto.
+Open `CLAUDE.md` (and `AGENTS.md`) and fill in the **Stack and recommended skills** table with your project's technologies.
 
-### 3. Scaffolde seu projeto
+### 3. Scaffold your project
 
-Crie a estrutura de pastas, instale dependências e configure o tooling conforme a stack escolhida. Depois, preencha as seções de **Comandos** e **Estrutura** em `CLAUDE.md`.
+Create the folder structure, install dependencies, and configure tooling according to the chosen stack. Then fill in the **Commands** and **Structure** sections in `CLAUDE.md`.
 
-### 4. Escreva o prompt da feature
+### 4. Write the feature prompt
 
-Copie `.claude/skills/cria-prd/assets/prompt-template.md` para `docs/nome-da-feature.md` e preencha com os requisitos da funcionalidade.
+Copy `.claude/skills/create-prd/assets/prompt-template.md` to `docs/feature-name.md` and fill in the feature requirements.
 
-### 5. Execute o fluxo SDD
+### 5. Run the SDD workflow
 
-Use os comandos disponíveis (via Claude Code ou Cursor) para gerar cada artefato:
+Use the available skills (via Claude Code or Cursor) to generate each artifact:
 
-| Etapa           | Comando             | Saída                                     |
+| Stage           | Skill               | Output                                    |
 | --------------- | ------------------- | ----------------------------------------- |
-| PRD             | `cria-prd`          | `tasks/prd-[feature]/prd.md`              |
-| Tech Spec       | `cria-techspec`     | `tasks/prd-[feature]/techspec.md`         |
-| Tasks           | `criar-tasks`       | `tasks/prd-[feature]/tasks.md` + `N_task.md` |
-| Implementação   | `executar-task`     | Código implementado + testes              |
-| Review          | `executar-review`   | Relatório de code review                  |
-| QA              | `executar-qa`       | Relatório de QA                           |
-| Bugfix          | `executar-bugfix`   | Correções + testes de regressão           |
+| PRD             | `create-prd`        | `tasks/prd-[feature]/prd.md`              |
+| Tech Spec       | `create-techspec`   | `tasks/prd-[feature]/techspec.md`         |
+| Tasks           | `create-tasks`      | `tasks/prd-[feature]/tasks.md` + `N_task.md` |
+| Implementation  | `run-task`          | Implemented code + tests                  |
+| Review          | `run-review`        | Code review report                        |
+| QA              | `run-qa`            | QA report                                 |
+| Bugfix          | `run-bugfix`        | Fixes + regression tests                  |
 
-### 6. Automação com run-tasks.sh
+### 6. Automation with run-tasks.sh
 
-Para executar todas as tasks de uma feature automaticamente via Claude CLI:
-
-```bash
-./run-tasks.sh tasks/prd-nome-da-feature
-```
-
-Opções disponíveis:
+To run all tasks for a feature automatically via Claude CLI:
 
 ```bash
-./run-tasks.sh tasks/prd-feature --no-skip-completed    # Re-executa tasks já completas
-./run-tasks.sh tasks/prd-feature --max-turns 80          # Aumenta o limite de turnos
-./run-tasks.sh tasks/prd-feature --no-stop-on-error      # Continua mesmo com falhas
+./run-tasks.sh tasks/prd-feature-name
 ```
 
-## Estrutura do boilerplate
+Available options:
+
+```bash
+./run-tasks.sh tasks/prd-feature --no-skip-completed    # Re-run already completed tasks
+./run-tasks.sh tasks/prd-feature --max-turns 80          # Increase turn limit
+./run-tasks.sh tasks/prd-feature --no-stop-on-error      # Continue even on failures
+```
+
+## Boilerplate structure
 
 ```
 /
-├── CLAUDE.md                  # Guia para agentes (preencher stack aqui)
-├── AGENTS.md                  # Cópia sincronizada do CLAUDE.md
-├── README.md                  # Este arquivo
-├── run-tasks.sh               # Runner automatizado de tasks (Claude CLI)
-├── docs/                      # Prompts de features vão aqui
-├── tasks/                     # Artefatos SDD gerados (PRD, techspec, tasks)
+├── CLAUDE.md                  # Agent guide (fill in your stack here)
+├── AGENTS.md                  # Synced copy of CLAUDE.md
+├── README.md                  # This file
+├── run-tasks.sh               # Automated task runner (Claude CLI)
+├── docs/                      # Feature prompts go here
+├── tasks/                     # Generated SDD artifacts (PRD, techspec, tasks)
 └── .claude/
     ├── agents/
-    │   └── task-reviewer.md   # Agente de revisão de tasks
-    ├── commands/              # Comandos do fluxo SDD (thin launchers)
-    │   ├── cria-prd.md
-    │   ├── cria-techspec.md
-    │   ├── criar-tasks.md
-    │   ├── executar-task.md
-    │   ├── executar-review.md
-    │   ├── executar-qa.md
-    │   └── executar-bugfix.md
-    └── skills/                # Skills self-contained com procedimentos e templates
-        ├── cria-prd/
+    │   └── task-reviewer.md   # Task review agent
+    └── skills/                # Self-contained skills with procedures and templates
+        ├── create-prd/
         │   ├── SKILL.md
         │   └── assets/
         │       ├── prd-template.md
         │       └── prompt-template.md
-        ├── cria-techspec/
+        ├── create-techspec/
         │   ├── SKILL.md
         │   └── assets/
         │       └── techspec-template.md
-        ├── criar-tasks/
+        ├── create-tasks/
         │   ├── SKILL.md
         │   └── assets/
         │       ├── tasks-template.md
         │       └── task-template.md
-        ├── executar-task/
+        ├── run-task/
         │   └── SKILL.md
-        ├── executar-review/
+        ├── run-review/
         │   └── SKILL.md
-        ├── executar-qa/
+        ├── run-qa/
         │   └── SKILL.md
-        ├── executar-bugfix/
+        ├── run-bugfix/
         │   └── SKILL.md
         ├── task-review/
         │   └── SKILL.md
@@ -116,20 +108,20 @@ Opções disponíveis:
             └── assets/, references/, scripts/
 ```
 
-## Skills disponíveis
+## Available skills
 
-| Skill                    | Uso                                                  | Templates incluídos            |
+| Skill                    | Purpose                                              | Included templates             |
 | ------------------------ | ---------------------------------------------------- | ------------------------------ |
-| `cria-prd`               | Gera PRD a partir de um prompt de feature             | `prd-template.md`, `prompt-template.md` |
-| `cria-techspec`          | Gera Tech Spec a partir de um PRD                     | `techspec-template.md`         |
-| `criar-tasks`            | Quebra PRD + Tech Spec em tarefas implementáveis      | `tasks-template.md`, `task-template.md` |
-| `executar-task`          | Implementa uma tarefa individual                      | —                              |
-| `executar-review`        | Code review contra PRD e TechSpec                     | —                              |
-| `executar-qa`            | QA com E2E, acessibilidade e checklist de requisitos  | —                              |
-| `executar-bugfix`        | Corrige bugs com análise de causa raiz                | —                              |
-| `task-review`            | Revisa uma task concluída (usado pelo task-reviewer)  | —                              |
-| `skills-best-practices`  | Guia para criar novas skills (agentskills.io)         | `SKILL.template.md`            |
+| `create-prd`               | Generate a PRD from a feature prompt                  | `prd-template.md`, `prompt-template.md` |
+| `create-techspec`          | Generate a Tech Spec from a PRD                       | `techspec-template.md`         |
+| `create-tasks`            | Break PRD + Tech Spec into implementable tasks        | `tasks-template.md`, `task-template.md` |
+| `run-task`          | Implement an individual task                          | —                              |
+| `run-review`        | Code review against PRD and TechSpec                  | —                              |
+| `run-qa`            | QA with E2E, accessibility, and requirements checklist| —                              |
+| `run-bugfix`        | Fix bugs with root-cause analysis                     | —                              |
+| `task-review`            | Review a completed task (used by task-reviewer agent) | —                              |
+| `skills-best-practices`  | Guide for creating new skills (agentskills.io)        | `SKILL.template.md`            |
 
-## Licença
+## License
 
-Use como quiser :)
+Private project.

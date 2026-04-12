@@ -1,9 +1,22 @@
 ---
-name: executar-task
+name: run-task
 description: Implements a single task from the task list, including code, tests, and checks. Use when tasks have been created and the next step is writing code. Don't use for creating PRDs, specs, task lists, or code review.
 ---
 
-# Execução de Task
+# Task Execution
+
+You are an AI assistant responsible for implementing tasks correctly.
+
+<critical>Identify and load the skills needed for the task based on the technologies used</critical>
+<critical>YOU MUST start implementation right after planning.</critical>
+<critical>After completing the task, mark it as complete in tasks.md</critical>
+<critical>ALWAYS RUN @task-reviewer at the end</critical>
+
+## References
+
+- PRD: `./tasks/prd-[feature-name]/prd.md`
+- Tech Spec: `./tasks/prd-[feature-name]/techspec.md`
+- Tasks: `./tasks/prd-[feature-name]/tasks.md`
 
 ## Step 0: Verify Dependencies
 
@@ -14,12 +27,12 @@ description: Implements a single task from the task list, including code, tests,
    - `tasks/prd-[feature]/tasks.md`
    - `tasks/prd-[feature]/N_task.md` (the specific task file)
 3. For each missing file, warn the user:
-   "[AVISO] Arquivo não encontrado: <path>."
-   - PRD: "Sem o PRD, os requisitos de negócio podem não ser atendidos."
-   - TechSpec: "Sem a TechSpec, a arquitetura e interfaces podem ficar inconsistentes."
-   - tasks.md: "Sem o índice de tasks, o progresso não pode ser rastreado."
-   - N_task.md: "O arquivo da task não existe. Verifique o número da task."
-4. Ask the user: "Deseja continuar sem este artefato?" (use the ask user question tool).
+   "[WARNING] File not found: <path>."
+   - PRD: "Without the PRD, business requirements may not be met."
+   - TechSpec: "Without the TechSpec, architecture and interfaces may be inconsistent."
+   - tasks.md: "Without the task index, progress cannot be tracked."
+   - N_task.md: "The task file does not exist. Verify the task number."
+4. Ask the user: "Would you like to continue without this artifact?" (use the ask user question tool).
 5. If the task file itself is missing, strongly recommend aborting.
 
 ## Step 1: Analyze Task
@@ -41,7 +54,7 @@ description: Implements a single task from the task list, including code, tests,
 1. Implement each subtask in order.
 2. Follow the project conventions defined in `CLAUDE.md`.
 3. Write tests alongside the implementation (unit, integration, E2E as specified in the task).
-4. Do NOT apply workarounds — resolve root causes.
+4. Do NOT apply workarounds -- resolve root causes.
 
 ## Step 4: Verify
 

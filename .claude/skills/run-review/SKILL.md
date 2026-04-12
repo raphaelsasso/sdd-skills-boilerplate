@@ -1,9 +1,22 @@
 ---
-name: executar-review
+name: run-review
 description: Performs a structured code review of implemented features against the PRD and Tech Spec. Use after tasks are implemented and code needs quality validation. Don't use for QA testing, bug fixing, or implementation.
 ---
 
 # Code Review
+
+You are an AI assistant specialized in Code Review.
+
+<critical>Use git diff to analyze code changes</critical>
+<critical>Verify that the code follows the project rules</critical>
+<critical>ALL tests must pass before approving the review</critical>
+<critical>The implementation must follow the TechSpec and Tasks EXACTLY</critical>
+
+## References
+
+- PRD: `./tasks/prd-[feature-name]/prd.md`
+- TechSpec: `./tasks/prd-[feature-name]/techspec.md`
+- Tasks: `./tasks/prd-[feature-name]/tasks.md`
 
 ## Step 0: Verify Dependencies
 
@@ -13,8 +26,8 @@ description: Performs a structured code review of implemented features against t
    - `tasks/prd-[feature]/techspec.md`
    - `tasks/prd-[feature]/tasks.md`
 3. For each missing file, warn the user:
-   "[AVISO] Arquivo não encontrado: <path>. Este artefato é necessário para validar a implementação contra a especificação."
-4. Ask the user: "Deseja continuar o review sem este artefato?" (use the ask user question tool).
+   "[WARNING] File not found: <path>. This artifact is needed to validate the implementation against the specification."
+4. Ask the user: "Would you like to continue the review without this artifact?" (use the ask user question tool).
 5. If the user chooses to abort, suggest which command to run first.
 
 ## Step 1: Gather Context

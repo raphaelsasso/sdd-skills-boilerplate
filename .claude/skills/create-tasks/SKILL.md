@@ -1,9 +1,23 @@
 ---
-name: criar-tasks
+name: create-tasks
 description: Breaks down a PRD and Tech Spec into an ordered list of implementable tasks. Use when PRD and Tech Spec are ready and the next step is planning the implementation sequence. Don't use for creating PRDs, writing specs, or implementing code.
 ---
 
-# Criação de Tasks
+# Task Creation
+
+You are an assistant specialized in software development project management. Your task is to create a detailed task list based on a PRD and a Tech Spec.
+
+<critical>BEFORE GENERATING ANY FILES, SHOW THE HIGH-LEVEL TASK LIST FOR APPROVAL</critical>
+<critical>DO NOT IMPLEMENT ANYTHING</critical>
+<critical>EACH TASK MUST BE A FUNCTIONAL, INCREMENTAL DELIVERABLE</critical>
+<critical>EACH TASK MUST HAVE A SET OF TESTS THAT ENSURES ITS FUNCTIONALITY AND BUSINESS OBJECTIVE</critical>
+
+## References
+
+- Templates: `assets/tasks-template.md`, `assets/task-template.md`
+- Required PRD: `tasks/prd-[feature-name]/prd.md`
+- Required Tech Spec: `tasks/prd-[feature-name]/techspec.md`
+- Output: `./tasks/prd-[feature-name]/tasks.md` and `./tasks/prd-[feature-name]/[num]_task.md`
 
 ## Step 0: Verify Dependencies
 
@@ -12,19 +26,19 @@ description: Breaks down a PRD and Tech Spec into an ordered list of implementab
    - `tasks/prd-[feature]/prd.md`
    - `tasks/prd-[feature]/techspec.md`
 3. For each missing file, warn the user:
-   "[AVISO] Arquivo não encontrado: <path>. Este artefato é utilizado para <purpose>."
-   - PRD: "definir os requisitos de negócio e escopo"
-   - TechSpec: "definir a arquitetura, interfaces e sequenciamento"
+   "[WARNING] File not found: <path>. This artifact is used for <purpose>."
+   - PRD: "defining business requirements and scope"
+   - TechSpec: "defining architecture, interfaces, and sequencing"
 4. If BOTH files are missing, strongly recommend aborting:
-   "[AVISO] Tanto o PRD quanto a TechSpec estão ausentes. As tasks geradas sem esses artefatos terão baixa qualidade. Recomendamos executar `cria-prd` e `cria-techspec` primeiro."
-5. Ask the user: "Deseja continuar mesmo assim?" (use the ask user question tool).
+   "[WARNING] Both the PRD and TechSpec are missing. Tasks generated without these artifacts will be low quality. We recommend running `create-prd` and `create-techspec` first."
+5. Ask the user: "Would you like to continue anyway?" (use the ask user question tool).
 6. If the user chooses to abort, suggest which command to run first.
 
 ## Step 1: Analyze Inputs
 
 1. Read the PRD and Tech Spec fully.
 2. Read `CLAUDE.md` to understand project conventions and stack.
-3. Identify the development sequence from the Tech Spec's "Sequenciamento de Desenvolvimento" section.
+3. Identify the development sequence from the Tech Spec's "Development Sequencing" section.
 
 ## Step 2: Propose High-Level Task List
 
@@ -53,7 +67,7 @@ description: Breaks down a PRD and Tech Spec into an ordered list of implementab
 ## Step 4: Output
 
 1. Confirm all files were created.
-2. Suggest: "Execute `executar-task` para implementar a primeira tarefa."
+2. Suggest: "Run `run-task` to implement the first task."
 
 ## Error Handling
 

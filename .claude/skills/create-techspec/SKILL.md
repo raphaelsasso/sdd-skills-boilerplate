@@ -1,18 +1,30 @@
 ---
-name: cria-techspec
+name: create-techspec
 description: Generates a Technical Specification from an existing PRD. Use when a PRD is ready and the next step is to define architecture, APIs, data models, and implementation strategy. Don't use for requirements gathering, task breakdown, or implementation.
 ---
 
-# Criação de Tech Spec
+# Tech Spec Creation
+
+You are a technical specification specialist focused on producing clear, implementation-ready Tech Specs based on a complete PRD.
+
+<critical>EXPLORE THE PROJECT FIRST BEFORE ASKING CLARIFICATION QUESTIONS</critical>
+<critical>DO NOT GENERATE THE TECH SPEC WITHOUT FIRST ASKING CLARIFICATION QUESTIONS (USE ASK USER QUESTION TOOL)</critical>
+<critical>USE WEB SEARCH TO RESEARCH BUSINESS RULES AND TECHNICAL INFORMATION BEFORE ASKING CLARIFICATION QUESTIONS</critical>
+
+## References
+
+- Template: `assets/techspec-template.md`
+- Required PRD: `tasks/prd-[feature-name]/prd.md`
+- Output: `tasks/prd-[feature-name]/techspec.md`
 
 ## Step 0: Verify Dependencies
 
 1. Identify the target feature folder (`tasks/prd-[feature]/`).
 2. Verify that `tasks/prd-[feature]/prd.md` exists.
 3. If the PRD is missing, warn the user:
-   "[AVISO] PRD não encontrado em tasks/prd-[feature]/prd.md. A Tech Spec pode ficar incompleta sem o PRD como base."
-4. Ask the user: "Deseja continuar sem o PRD?" (use the ask user question tool).
-5. If the user chooses to abort, suggest: "Execute `cria-prd` primeiro para criar o PRD."
+   "[WARNING] PRD not found at tasks/prd-[feature]/prd.md. The Tech Spec may be incomplete without the PRD as a foundation."
+4. Ask the user: "Would you like to continue without the PRD?" (use the ask user question tool).
+5. If the user chooses to abort, suggest: "Run `create-prd` first to create the PRD."
 6. If the user chooses to continue, proceed to Step 1 noting that output quality may be reduced.
 
 ## Step 1: Gather Context
@@ -37,20 +49,20 @@ description: Generates a Technical Specification from an existing PRD. Use when 
 
 1. Read the Tech Spec template at `assets/techspec-template.md`.
 2. Generate the Tech Spec following the template structure:
-   - **Resumo Executivo**: Solution overview in 1-2 paragraphs
-   - **Arquitetura do Sistema**: Components, relationships, data flow
-   - **Design de Implementação**: Interfaces, data models, API endpoints
-   - **Pontos de Integração**: External services and auth requirements
-   - **Abordagem de Testes**: Unit, integration, E2E strategy
-   - **Sequenciamento de Desenvolvimento**: Build order and dependencies
-   - **Considerações Técnicas**: Key decisions, trade-offs, risks
-   - **Arquivos relevantes e dependentes**: List files that will be created or modified
-3. List applicable skills from `.claude/skills/` in the "Conformidade com Skills Padrões" section.
+   - **Executive Summary**: Solution overview in 1-2 paragraphs
+   - **System Architecture**: Components, relationships, data flow
+   - **Implementation Design**: Interfaces, data models, API endpoints
+   - **Integration Points**: External services and auth requirements
+   - **Testing Approach**: Unit, integration, E2E strategy
+   - **Development Sequencing**: Build order and dependencies
+   - **Technical Considerations**: Key decisions, trade-offs, risks
+   - **Relevant and dependent files**: List files that will be created or modified
+3. List applicable skills from `.claude/skills/` in the "Skills Compliance" section.
 
 ## Step 4: Output
 
 1. Write the Tech Spec to `tasks/prd-[feature]/techspec.md`.
-2. Confirm completion and suggest: "Execute `criar-tasks` para quebrar a implementação em tarefas."
+2. Confirm completion and suggest: "Run `create-tasks` to break the implementation into tasks."
 
 ## Error Handling
 

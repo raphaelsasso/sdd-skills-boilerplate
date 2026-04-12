@@ -1,95 +1,95 @@
 # CLAUDE.md
 
-Guia para agentes de IA ao trabalhar com o código deste repositório.
+Guide for AI agents when working with this repository's code.
 
-Este projeto segue o fluxo **SDD (Spec-Driven Development)**.
-
----
-
-## Setup do Projeto
-
-### Passo 1: Escolha a Stack
-
-Antes de iniciar o desenvolvimento, preencha a tabela abaixo com as tecnologias escolhidas para o projeto. Essa tabela é a referência principal para agentes de IA saberem qual stack utilizar.
-
-### Stack e skills recomendadas
-
-| Área              | Tecnologia | Skill sugerida |
-| ----------------- | ---------- | -------------- |
-| Frontend          |            |                |
-| UI / Design       |            |                |
-| Backend           |            |                |
-| Database          |            |                |
-| Testes            |            |                |
-| Package Manager   |            |                |
-| Design / UX       |            |                |
-| PRD               | —          | `cria-prd`     |
-| Tech Spec         | —          | `cria-techspec`|
-| Tasks             | —          | `criar-tasks`  |
-| Implementação     | —          | `executar-task` |
-| Code Review       | —          | `executar-review`, `task-review` |
-| QA                | —          | `executar-qa`  |
-| Bugfix            | —          | `executar-bugfix` |
-
-### Passo 2: Defina a estrutura do projeto
-
-Após escolher a stack, crie a estrutura de pastas e arquivos de configuração do seu projeto. Depois, documente a estrutura na seção "Estrutura do projeto" abaixo.
+This project follows the **SDD (Spec-Driven Development)** workflow.
 
 ---
 
-### Prioridades
+## Project Setup
 
-- **Sempre verifique as skills** antes de implementar — tarefas sem skills relevantes podem ser invalidadas
-- **Execute os checks** antes de concluir: lint, typecheck, build, test (conforme a stack escolhida)
-- **Não use workarounds** — prefira correções de causa raiz
-- **Use o package manager definido na stack** para adicionar dependências (nunca edite arquivos de dependência manualmente sem conferir a versão)
+### Step 1: Choose Your Stack
 
-### Comandos do projeto
+Before starting development, fill in the table below with the technologies chosen for the project. This table is the primary reference for AI agents to know which stack to use.
 
-<!-- Preencha com os comandos do seu projeto após scaffolding -->
+### Stack and recommended skills
+
+| Area              | Technology | Suggested skill |
+| ----------------- | ---------- | --------------- |
+| Frontend          |            |                 |
+| UI / Design       |            |                 |
+| Backend           |            |                 |
+| Database          |            |                 |
+| Testing           |            |                 |
+| Package Manager   |            |                 |
+| Design / UX       |            |                 |
+| PRD               | —          | `create-prd`      |
+| Tech Spec         | —          | `create-techspec` |
+| Tasks             | —          | `create-tasks`   |
+| Implementation    | —          | `run-task`  |
+| Code Review       | —          | `run-review`, `task-review` |
+| QA                | —          | `run-qa`   |
+| Bugfix            | —          | `run-bugfix` |
+
+### Step 2: Define the project structure
+
+After choosing the stack, create the folder structure and configuration files for your project. Then document the structure in the "Project structure" section below.
+
+---
+
+### Priorities
+
+- **Always check skills** before implementing — tasks without relevant skills may be invalidated
+- **Run checks** before completing: lint, typecheck, build, test (according to the chosen stack)
+- **Do not use workarounds** — prefer root-cause fixes
+- **Use the package manager defined in the stack** to add dependencies (never manually edit dependency files without verifying the version)
+
+### Project commands
+
+<!-- Fill in your project commands after scaffolding -->
 
 ```bash
-# Exemplo:
-# dev           — Inicia o ambiente de desenvolvimento
-# build         — Build de produção
-# typecheck     — Verificação de tipos
+# Example:
+# dev           — Start development environment
+# build         — Production build
+# typecheck     — Type checking
 # lint          — Linting
-# test          — Testes unitários
-# test:e2e      — Testes E2E
+# test          — Unit tests
+# test:e2e      — E2E tests
 ```
 
-### Estrutura do projeto
+### Project structure
 
-<!-- Preencha com a estrutura do seu projeto após scaffolding -->
+<!-- Fill in your project structure after scaffolding -->
 
 ```
 /
 ├── ...
 ```
 
-### Regras de código
+### Code rules
 
-1. **Componentes funcionais** — sem class components
-2. **Props tipadas** — tipar diretamente na função
-3. **Tratar estados** — loading, error e empty
-4. **kebab-case** para nomes de arquivos (ex: `meu-componente.tsx`)
-5. **Composição** — preferir composição a muitas props booleanas
+1. **Functional components** — no class components
+2. **Typed props** — type directly in the function
+3. **Handle states** — loading, error, and empty
+4. **kebab-case** for file names (e.g., `my-component.tsx`)
+5. **Composition** — prefer composition over many boolean props
 
-### Testes
+### Testing
 
-<!-- Preencha com a estratégia de testes do seu projeto -->
+<!-- Fill in your project's testing strategy -->
 
-- **Unit tests**: [framework e configuração]
-- **E2E**: [framework e configuração]
+- **Unit tests**: [framework and configuration]
+- **E2E**: [framework and configuration]
 
 ### Git
 
-- **Não execute** `git restore`, `git reset`, `git clean` ou comandos destrutivos **sem permissão explícita do usuário**
+- **Do not run** `git restore`, `git reset`, `git clean` or destructive commands **without explicit user permission**
 
-### Anti-padrões
+### Anti-patterns
 
-1. Pular ativação de skill
-2. Ativar apenas uma skill quando o código toca vários domínios
-3. Esquecer verificação antes de marcar tarefa concluída
-4. Executar comandos git destrutivos sem permissão do usuário
-5. Evite fazer workarounds
+1. Skipping skill activation
+2. Activating only one skill when code touches multiple domains
+3. Forgetting to verify before marking a task as complete
+4. Running destructive git commands without user permission
+5. Avoid using workarounds
