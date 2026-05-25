@@ -45,6 +45,7 @@ Use the available skills (via Claude Code or Cursor) to generate each artifact:
 | Tech Spec       | `create-techspec`   | `tasks/prd-[feature]/techspec.md`         |
 | Tasks           | `create-tasks`      | `tasks/prd-[feature]/tasks.md` + `N_task.md` |
 | Implementation  | `run-task`          | Implemented code + tests                  |
+| Implementation (all) | `run-all-tasks` | Whole task list implemented in parallel waves |
 | Review          | `run-review`        | Code review report                        |
 | QA              | `run-qa`            | QA report                                 |
 | Bugfix          | `run-bugfix`        | Fixes + regression tests                  |
@@ -77,7 +78,8 @@ Available options:
 ├── tasks/                     # Generated SDD artifacts (PRD, techspec, tasks)
 └── .claude/
     ├── agents/
-    │   └── task-reviewer.md   # Task review agent
+    │   ├── task-reviewer.md   # Task review agent
+    │   └── task-runner.md     # Implements a single task via run-task (used by run-all-tasks)
     └── skills/                # Self-contained skills with procedures and templates
         ├── create-prd/
         │   ├── SKILL.md
@@ -95,6 +97,10 @@ Available options:
         │       └── task-template.md
         ├── run-task/
         │   └── SKILL.md
+        ├── run-all-tasks/
+        │   ├── SKILL.md
+        │   ├── scripts/plan-waves.py
+        │   └── references/troubleshooting.md
         ├── run-review/
         │   └── SKILL.md
         ├── run-qa/
@@ -116,6 +122,7 @@ Available options:
 | `create-techspec`          | Generate a Tech Spec from a PRD                       | `techspec-template.md`         |
 | `create-tasks`            | Break PRD + Tech Spec into implementable tasks        | `tasks-template.md`, `task-template.md` |
 | `run-task`          | Implement an individual task                          | —                              |
+| `run-all-tasks`     | Orchestrate the whole task list in parallel waves (dispatches the `task-runner` agent) | `plan-waves.py` |
 | `run-review`        | Code review against PRD and TechSpec                  | —                              |
 | `run-qa`            | QA with E2E, accessibility, and requirements checklist| —                              |
 | `run-bugfix`        | Fix bugs with root-cause analysis                     | —                              |

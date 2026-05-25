@@ -53,7 +53,9 @@ You are an assistant specialized in software development project management. You
 ## Step 3: Generate Task Files
 
 1. Read the templates at `assets/tasks-template.md` and `assets/task-template.md`.
-2. Generate `tasks/prd-[feature]/tasks.md` with the task index using the tasks template.
+2. Generate `tasks/prd-[feature]/tasks.md` with the task index using the tasks template:
+   - Fill the "## Tasks" checkbox list.
+   - Fill the "## Dependencies and Parallelization" table. For each task, list in "Depends on" ONLY the hard prerequisites it truly needs before it can begin (see the syntax legend in the template). Keep dependencies minimal so independent tasks can run in parallel. This table is what the `run-all-tasks` orchestrator reads to schedule parallel waves — if it is missing, parallelism is disabled.
 3. For each task, generate `tasks/prd-[feature]/N_task.md` using the task template:
    - Include a clear overview
    - List applicable skills from `.claude/skills/`
@@ -67,7 +69,7 @@ You are an assistant specialized in software development project management. You
 ## Step 4: Output
 
 1. Confirm all files were created.
-2. Suggest: "Run `run-task` to implement the first task."
+2. Suggest next steps: "Run `run-task` to implement the first task, or `run-all-tasks` to implement the whole list in parallel waves."
 
 ## Error Handling
 
