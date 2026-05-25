@@ -26,7 +26,7 @@ Before starting development, fill in the table below with the technologies chose
 | PRD               | —          | `create-prd`      |
 | Tech Spec         | —          | `create-techspec` |
 | Tasks             | —          | `create-tasks`   |
-| Implementation    | —          | `run-task`  |
+| Implementation    | —          | `run-task`, `run-all-tasks` |
 | Code Review       | —          | `run-review`, `task-review` |
 | QA                | —          | `run-qa`   |
 | Bugfix            | —          | `run-bugfix` |
